@@ -18,10 +18,12 @@ class RemoteArticlesBloc
     final dataState = await _getArticleUseCase();
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+      print("remote bloc : ${dataState.data!}");
       emit(RemoteArticlesDone(dataState.data!));
     }
 
     if (dataState is DataFailed) {
+      print(dataState.error!.message);
       emit(RemoteArticlesFailed(dataState.error!));
     }
   }

@@ -28,7 +28,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
             requestOptions: httpResponse.response.requestOptions,
             error: httpResponse.response.statusMessage,
             response: httpResponse.response,
-            // type: DioExceptionType.response,
+            type: DioExceptionType.badResponse,
           ),
         );
       }
