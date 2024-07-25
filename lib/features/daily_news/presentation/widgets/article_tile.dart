@@ -10,12 +10,12 @@ class ArticleWidget extends StatelessWidget {
   final void Function(ArticleEntity article) ? onArticlePressed;
 
   const ArticleWidget({
-    Key ? key,
+    super.key,
     this.article,
     this.onArticlePressed,
     this.isRemovable = false,
     this.onRemove,
-  }): super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ArticleWidget extends StatelessWidget {
 
   Widget _buildImage(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: article!.urlToImage ?? '',
+      imageUrl: article!.urlToImage!,
       imageBuilder : (context, imageProvider) => Padding(
         padding: const EdgeInsetsDirectional.only(end: 14),
           child: ClipRRect(
@@ -63,10 +63,10 @@ class ArticleWidget extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width / 3,
               height: double.maxFinite,
-              child: CupertinoActivityIndicator(),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.08),
               ),
+              child: const CupertinoActivityIndicator(),
             ),
           ),
       ),
@@ -78,10 +78,10 @@ class ArticleWidget extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width / 3,
               height: double.maxFinite,
-              child: Icon(Icons.error),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.08),
               ),
+              child: const Icon(Icons.error),
             ),
           ),
       )
@@ -126,7 +126,7 @@ class ArticleWidget extends StatelessWidget {
                   const Icon(Icons.timeline_outlined, size: 16),
                     const SizedBox(width: 4),
                       Text(
-                        article!.publishedAt ?? ''  ,
+                        article!.publishedAt!,
                         style: const TextStyle(
                           fontSize: 12,
                         ),
